@@ -41,7 +41,7 @@ async function main(){
 const store = mongoStore.create({
   mongoUrl : dbUrl,
   crypto:{
-    secret: "wnaderlustsecret0909"
+    secret: "wanderlustsecret0909"
   },
   touchAfter : 24*3600
 });
@@ -57,7 +57,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodeOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(session({
-  store,
+   store,
   secret: "wanderlustsecret0909",
   resave: false,
   saveUninitialized:true,
