@@ -38,17 +38,17 @@ async function main(){
   await mongoose.connect(dbUrl);
 }
 
-const store = mongoStore.create({
-  mongoUrl : dbUrl,
-  crypto:{
-    secret: "wanderlustsecret0909"
-  },
-  touchAfter : 24*3600
-});
+// const store = mongoStore.create({
+//   mongoUrl : dbUrl,
+//   crypto:{
+//     secret: "wanderlustsecret0909"
+//   },
+//   touchAfter : 24*3600
+// });
 
-store.on("error", ()=>{
-  console.log("error in mongo-connect", err);
-})
+// store.on("error", ()=>{
+//   console.log("error in mongo-connect", err);
+// })
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -57,7 +57,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodeOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(session({
-   store,
+  // store,
   secret: "wanderlustsecret0909",
   resave: false,
   saveUninitialized:true,
@@ -105,7 +105,7 @@ app.post("/search", async(req, res)=>{
     let {searchText} = req.body;
     let allListing = await Listing.find({$or: [{title: searchText}, {category: searchText}, {location: searchText}, {country: searchText}]});
     if(allListing.length>0){
-    res.render("./listings/index.ejs", {allListing});
+     return res.render("./listings/index.ejs", {allListing});
     }
     else{
       if(searchText.length>0){
