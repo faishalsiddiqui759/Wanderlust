@@ -2,12 +2,12 @@
 <body>
     
     
-    <form method="post" action="/listing" novalidate class="needs-validation">
+    <form method="post" action="/listing" novalidate class="needs-validation" enctype="multipart/form-data">
 
      <div class="row form-body">
-       <div class="col-8">
+       <div class="col-10">
         <br>
-        <h2><b>Create new List</b></h2>
+        <h2><b>Create new Listing</b></h2>
         <div>
             <lable for="title" class="form-lable">Title</lable>
             <input type="text" name="listing[title]" placeholder="Add a catchy title" class="form-control mb-3" required>
@@ -16,19 +16,31 @@
         </div>
         <div>
             <lable for="Description" class="form-lable">Description</lable>
-           <textarea name="listing[description]" class="form-control mb-3" required>enter the description</textarea>
+           <textarea name="listing[description]" class="form-control mb-3" placeholder="enter description" required></textarea>
            <div class="valid-feedback mb-3">Looks great!</div>
             <div class="invalid-feedback mb-3">Please enter description</div>
         </div>
+        
         <div>
-            <lable for="image" class="form-lable">Image URL</lable>
-            <input type="text" name="listing[image]" placeholder="image url" class="form-control mb-3">
+            <lable for="image" class="form-lable">Upload image [only images allowed [i.e png, jpeg, jpg]</lable>
+            <input type="file" name="listing[image]" class="form-control mb-3" required>
+            <div class="invalid-feedback mb-3">Please upload image</div>
         </div>
         
+        <div class="mb-3">
+            <lable for="dropdown" class="form-lable">Select Category</lable>
+            <select class="form-select" id="dropdown" name="listing[category]" required>
+                <option value="Pools">Pools</option>
+                <option value="Mountains">Mountains</option>
+                <option value="Boats">Boats</option>
+                <option value="Beach">Beach</option>
+            </select>
+        </div>
+
         <div class="row">
             <div class="col-md-4">
             <lable for="price" class="form-lable">Price</lable>
-            <input  name="listing[price]" placeholder="enter price" class="form-control mb-3" required>
+            <input name="listing[price]" placeholder="enter price" class="form-control mb-3" required>
             <div class="valid-feedback mb-3">Looks great!</div>
             <div class="invalid-feedback mb-3">Please enter price</div>
         </div>
@@ -40,14 +52,18 @@
         </div>
         </div>
 
-        <div>
+        <div class="row">
+        <div class="col-md-14">
             <lable for="location" class="form-lable">Location</lable>
             <input type="text" name="listing[location]" placeholder="location" class="form-control mb-3" required>
             <div class="valid-feedback mb-3">Looks great!</div>
             <div class="invalid-feedback mb-3">Please enter location</div>
         </div>
 
-        <button class="btn btn-dark form-btn ">Add</button>
+    
+    </div>
+
+        <button class="btn btn-dark form-btn mb-3">Add</button>
     </form>
        </div> 
      </div>  

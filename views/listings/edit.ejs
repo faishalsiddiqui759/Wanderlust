@@ -1,14 +1,11 @@
 <% layout("/layouts/boilerplate") -%>
 <body>
 
-    <form method="post" action="/listing/<%=listing._id%>?_method=PUT" novalidate class="needs-validation">
-       
+    <form method="post" action="/listing/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
     <div class="row form-body ">
-        
         <div class="col-10">
             <br>
             <h2><b>Edit your List</b></h2>
-        <from>
          <div>
              <lable for="title" class="form-lable">Title</lable>
              <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control mb-3" required>
@@ -21,13 +18,28 @@
             <div class="valid-feedback mb-3">Looks great!</div>
             <div class="invalid-feedback mb-3">Please enter description</div>
          </div>
+
+             <div class="form-lable previewImage">
+                <lable for="originalImage">Original image</lable>
+                <image class="form-control" src="<%=originalImageUrl%>" id="originalImage"></image>
+             </div><br>
+
          <div>
-             <lable for="image" class="form-lable">Image URL</lable>
-             <input type="text" name="listing[image]" class="form-control mb-3" value="<%= listing.image %>" required>
-             <div class="valid-feedback mb-3">Looks great!</div>
-            <div class="invalid-feedback mb-3">Please enter image url</div>
+             <lable for="image" class="form-lable">Upload new image</lable>
+             <input type="file" name="listing[image]" class="form-control mb-3" value="<%= listing.image %>">   
          </div>
-         
+          
+         <div class="mb-3">
+            <lable for="dropdown" class="form-lable">Select Category</lable>
+            <select class="form-select" id="dropdown" name="listing[category]" required>
+                <option value="Mountains">Mountains</option>
+                <option value="Pools">Pools</option>
+                <option value="Beach">Beach</option>
+                <option value="House Boats">Boats</option>
+            </select>
+        </div>
+
+
          <div class="row">
              <div class="col-md-4">
              <lable for="price" class="form-lable">Price</lable>
@@ -51,11 +63,7 @@
          </div>
  
          <button class="btn btn-dark form-btn ">Edit</button>
-     </form>
+     </form> 
         </div> 
-      </div>  
-         
-
-
+      </div> <br> 
  </body>
-</html>
